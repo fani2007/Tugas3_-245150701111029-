@@ -1,0 +1,66 @@
+import java.util.Scanner;
+
+public class PengirimanBarang {
+    String namaPengirim;
+    String alamatTujuan;
+    double berat;
+    double biayaDasar;
+
+    public PengirimanBarang() {
+        Scanner input = new Scanner(System.in);
+
+        System.out.println("=== Input Data Pengiriman Barang ===");
+        System.out.print("Masukkan nama pengirim: ");
+        this.namaPengirim = input.nextLine();
+
+        System.out.print("Masukkan alamat tujuan: ");
+        this.alamatTujuan = input.nextLine();
+
+        System.out.print("Masukkan berat barang (kg): ");
+        this.berat = input.nextDouble();
+
+        System.out.print("Masukkan biaya dasar pengiriman: ");
+        this.biayaDasar = input.nextDouble();
+        System.out.println("====================================");
+    }
+
+    public PengirimanBarang(String namaPengirim, String alamatTujuan, double berat, double biayaDasar) {
+        this.namaPengirim = namaPengirim;
+        this.alamatTujuan = alamatTujuan;
+        this.berat = berat;
+        this.biayaDasar = biayaDasar;
+    }
+
+    public double hitungOngkir(double diskonPersen) {
+        return biayaDasar - (biayaDasar * diskonPersen / 100);
+    }
+
+    public double hitungOngkir(double diskonPersen, double biayaTambahan) {
+        double biayaSetelahDiskon = biayaDasar - (biayaDasar * diskonPersen / 100);
+        return biayaSetelahDiskon + biayaTambahan;
+    }
+
+    public double hitungOngkir(int jarak) {
+        if (jarak > 50) {
+            return biayaDasar + (biayaDasar * 0.1);
+        } else {
+            return biayaDasar - (biayaDasar * 0.05);
+        }
+    }
+
+    public void displayInfoLogistik() {
+        System.out.println("\n=== Info Perusahaan Logistik ===");
+        System.out.println("Nama Perusahaan: YTTA Logistics");
+        System.out.println("Layanan: Pengiriman Barang Domestik dan Internasional");
+        System.out.println("===================================");
+    }
+
+    public void displayDataPengiriman() {
+        System.out.println("\n=== Data Pengiriman ===");
+        System.out.println("Nama Pengirim   : " + namaPengirim);
+        System.out.println("Alamat Tujuan   : " + alamatTujuan);
+        System.out.println("Berat Barang    : " + berat + " kg");
+        System.out.println("Biaya Dasar     : Rp" + biayaDasar);
+        System.out.println("=========================");
+    }
+}
